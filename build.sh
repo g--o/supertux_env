@@ -1,8 +1,7 @@
 #!/bin/bash
 
-BASE_DIR="supertux"
-BUILD_DIR="$BASE_DIR/build"
-let NPROC=$(grep -c ^processor /proc/cpuinfo)*2
+. utils.sh
+
 CMAKE_FLAGS='-DWARNINGS=ON -DWERROR=ON'
 
 function build_supertux()
@@ -18,7 +17,7 @@ function build_supertux()
 	make -j${NPROC}
 }
 
-if [ ! -d $BUILD_DIR ]; then
+if [ ! -d "$BUILD_DIR" ]; then
 	mkdir $BUILD_DIR
 fi
 
